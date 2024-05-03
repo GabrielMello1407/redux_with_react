@@ -5,13 +5,14 @@ import {
 } from '@reduxjs/toolkit';
 import contador from './contador';
 import modal from './modal';
-import logger from './middleware/logger';
+import login from './login';
+// import logger from './middleware/logger';
 
 // criando a store
-const reducer = combineReducers({ contador, modal });
+const reducer = combineReducers({ contador, modal, login });
 const store = configureStore({
   reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export default store;
