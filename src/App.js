@@ -2,15 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementar, reduzir } from './store/contador';
 import { abrir, fechar } from './store/modal';
-import login from './store/login';
+import { login } from './store/login';
 
 function App() {
   const { contador, modal } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-
-  const { data } = useSelector((state) => state.login.user);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -48,7 +46,6 @@ function App() {
             onChange={({ target }) => setPassword(target.value)}
           />
           <button>Enviar</button>
-          <p>{data?.email}</p>
         </form>
       </div>
     </div>
