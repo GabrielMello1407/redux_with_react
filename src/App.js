@@ -1,14 +1,22 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { incrementar, reduzir } from './store/contador';
+import { incrementar, reduzir, somar } from './store/contador';
 import { abrir, fechar } from './store/modal';
-import { login } from './store/login';
+import { autoLogin, login } from './store/login';
 
 function App() {
   const { contador, modal } = useSelector((state) => state);
-  const dispatch = useDispatch();
+
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const dispatch = useDispatch();
+
+  const { data } = useSelector((state) => state.login.user);
+  console.log(data);
+
+  React.useEffect(() => {
+    dispatch(autoLogin());
+  }, [dispatch]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -47,6 +55,8 @@ function App() {
           />
           <button>Enviar</button>
         </form>
+        <p>{data?.email}</p>
+        <button onClick={() => dispatch(somar(5))}>Somar</button>
       </div>
     </div>
   );
